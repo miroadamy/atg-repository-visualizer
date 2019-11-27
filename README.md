@@ -36,7 +36,7 @@ See the files in `examples`:
 
 The file is just for ilustration how does output look like.
 
-The XML and UML files are incomplete - removed proprietary information.
+The XML and UML files are here only to give an idea about the input and output formats - I have removed proprietary information so these are NOT the same files used for generating the PNG. You will need to extract your own files from ATG
 
 
 
