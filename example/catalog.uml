@@ -1,0 +1,142 @@
+Got 34 item-descriptors
+@startuml
+
+class  catalog {
+	dcs_catalog
+	dcs_root_cats
+	dcs_root_cats
+	dcs_allroot_cats
+	dcs_allroot_cats
+	dcs_root_subcats
+	dcs_root_subcats
+	dcs_catfol_chld
+	dcs_dir_anc_ctlgs
+	dcs_ind_anc_ctlgs
+	dcs_ctlg_anc_cats
+	dcs_catalog_sites
+	dcs_cat_subcats
+..
+	id(dcs_catalog)={required=false, hidden=false}
+	version(dcs_catalog)={required=false, hidden=false}
+	displayName(dcs_catalog)={required=false, hidden=false}
+	creationDate(dcs_catalog)={required=false, hidden=false}
+	lastModifiedDate(dcs_catalog)={required=false, hidden=false}
+	status(dcs_catalog)={required=false, hidden=false}
+	index(dcs_catalog)={required=false, hidden=true}
+	itemAcl(dcs_catalog)={required=false, hidden=false}
+	rootCategories(dcs_root_cats)={required=false, hidden=false}
+	rootCategoryIds(dcs_root_cats)={required=false, hidden=true}
+	allRootCategories(dcs_allroot_cats)={required=false, hidden=false}
+	allRootCategoryIds(dcs_allroot_cats)={required=false, hidden=true}
+	rootSubCatalogs(dcs_root_subcats)={required=false, hidden=false}
+	directParentCatalogs(dcs_root_subcats)={required=false, hidden=false}
+	parentFolders(dcs_catfol_chld)={required=false, hidden=false}
+	directAncestorCatalogsAndSelf(dcs_dir_anc_ctlgs)={required=false, hidden=false}
+	indirectAncestorCatalogs(dcs_ind_anc_ctlgs)={required=false, hidden=false}
+	ancestorCategories(dcs_ctlg_anc_cats)={required=false, hidden=false}
+	siteIds(dcs_catalog_sites)={required=false, hidden=false}
+	parentCategories(dcs_cat_subcats)={required=false, hidden=false}
+	rootNavigationCategory(gdi_catalog)={item-type=category}
+	ancestorCatalogsAndSelf={}
+}
+	 catalog *-- category : rootNavigationCategory
+
+class  category {
+	dcs_category
+	dcs_category_acl
+	dcs_cat_subcats
+	dcs_cat_keywrds
+	dcs_cat_media
+	dcs_cat_aux_media
+	dcs_cat_rltdcat
+	dcs_cat_chldprd
+	dcs_cat_chldcat
+	dcs_cat_chldcat
+	dcs_cat_groups
+	dcs_cat_catinfo
+	dcs_cat_catalogs
+	dcs_root_cats
+	dcs_cat_anc_cats
+	dcs_cat_anc_cats
+	dcs_category_sites
+	dcs_cat_prnt_cats
+..
+	version(dcs_category)={required=false, hidden=false}
+	id(dcs_category)={required=false, hidden=false}
+	creationDate(dcs_category)={required=false, hidden=false}
+	startDate(dcs_category)={required=false, hidden=false}
+	endDate(dcs_category)={required=false, hidden=false}
+	type(dcs_category)={required=false, hidden=true}
+	defaultParentCategory(dcs_category)={required=false, hidden=false, item-type=category}
+	displayNameDefault(dcs_category)={required=true}
+	descriptionDefault(dcs_category)={}
+	longDescriptionDefault(dcs_category)={}
+	itemAcl(dcs_category_acl)={required=false, hidden=false}
+	subCatalogs(dcs_cat_subcats)={required=false, hidden=false}
+	keywordsDefault(dcs_cat_keywrds)={}
+	template(dcs_cat_media)={required=false, hidden=false, item-type=media}
+	thumbnailImage(dcs_cat_media)={required=false, hidden=false, item-type=media}
+	smallImage(dcs_cat_media)={required=false, hidden=false, item-type=media}
+	largeImage(dcs_cat_media)={required=false, hidden=false, item-type=media}
+	auxiliaryMedia(dcs_cat_aux_media)={required=false, hidden=false}
+	fixedRelatedCategories(dcs_cat_rltdcat)={required=false, hidden=false}
+	fixedChildProducts(dcs_cat_chldprd)={required=false, hidden=false}
+	fixedChildCategories(dcs_cat_chldcat)={required=false, hidden=false}
+	fixedParentCategories(dcs_cat_chldcat)={required=false, hidden=true}
+	relatedCategoryGroup(dcs_cat_groups)={required=false, hidden=false}
+	childProductGroup(dcs_cat_groups)={required=false, hidden=false}
+	childCategoryGroup(dcs_cat_groups)={required=false, hidden=false}
+	categoryInfos(dcs_cat_catinfo)={required=false, hidden=false}
+	computedCatalogs(dcs_cat_catalogs)={required=false, hidden=false}
+	parentCatalogs(dcs_root_cats)={required=false, hidden=false}
+	ancestorCategories(dcs_cat_anc_cats)={required=false, hidden=false}
+	ancestorCategoryIds(dcs_cat_anc_cats)={required=false, hidden=true}
+	siteIds(dcs_category_sites)={required=false, hidden=false}
+	parentCategoriesForCatalog(dcs_cat_prnt_cats)={required=false, hidden=false}
+	parentCatalog={item-type=catalog}
+	catalog={item-type=catalog}
+	dynamicRelatedCategories={}
+	dynamicChildProducts={}
+	dynamicChildCategories={}
+	relatedCategories={}
+	childProducts={}
+	childCategories={}
+	catalogs={}
+	subCatalogsChildCategories={}
+	generatedAncestorsMap={}
+	generatedAncestors={item-type=category}
+	isAncestorsGeneratedMap={}
+	isAncestorsGenerated={}
+	parentCategoryForCatalog={item-type=category}
+	parentCategory={item-type=category}
+	displayName={}
+	description={}
+	longDescription={}
+	seoTitle={}
+	seoDescription={}
+	seoKeywords={}
+	seoUrl={}
+	keywords={}
+	dynamicUpsellProducts={}
+	upsellProducts={}
+}
+	 category *-- category : defaultParentCategory
+	 category *-- media : template
+	 category *-- media : thumbnailImage
+	 category *-- media : smallImage
+	 category *-- media : largeImage
+	 category *-- promotionalContent : mainBanner
+
+
+.... DELETED for security reasons ....
+
+class  skuTranslation {
+	gdi_sku_xlate
+..
+	displayName(gdi_sku_xlate)={}
+	description(gdi_sku_xlate)={}
+	displayColorDesc(gdi_sku_xlate)={}
+	size(gdi_sku_xlate)={}
+	sizeGroupSize(gdi_sku_xlate)={}
+}
+@enduml

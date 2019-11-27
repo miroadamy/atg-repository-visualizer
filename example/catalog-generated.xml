@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You should only be defining caching strategies and repository loading here -->
+<gsa-template>
+
+  <header>
+    <name>Catalog Definition</name>
+    <version>1</version>
+  </header>
+
+
+
+
+
+
+    <!--///////////////////////////////                                         catalog                                             ///////////////////////////////
+///////////////////////////////  catalog /////////////////////////////// -->
+<item-descriptor expert="false" last-modified-property="lastModifiedDate" id-separator=":" display-name-resource="itemDescriptorCatalog" writable="true" version-property="version" cache-mode="simple" id-space-name="catalog" content="false" folder="false" default="false" query-cache-size="50" hidden="false" name="catalog" display-property="displayName" context-membership-property="siteIds" use-id-for-path="false" item-cache-size="50">
+
+    <attribute name="resourceBundle" value="atg.commerce.CustomCatalogTemplateResources"/>
+    <attribute name="plural-display-name-resource" value="itemDescriptorCatalog.plural"/>
+    <attribute name="icon" value="catalogIcon"/>
+    <attribute name="largeIcon" value="catalogLargeIcon"/>
+    <attribute name="iconSwf" value="catalogIconSwf"/>
+    <attribute name="largeIconSwf" value="catalogLargeIconSwf"/>
+
+    <attribute name="categoryBasicsPriority" value="10"/>
+    <attribute name="categoryCategorizationPriority" value="20"/>
+    <attribute name="categoryInfoPriority" value="30"/>
+    <attribute name="updateLastModified" value="true"/>
+
+    <table name="dcs_catalog" id-column-name="catalog_id" type="primary" shared-table-sequence="1">
+
+      <property expert="false" readable="true" category-resource="categoryInfo" column-name="catalog_id" display-name-resource="id" data-type="string" hidden="false" writable="true" name="id" required="false" cache-mode="inherit" queryable="true">
+        <attribute name="uiwritable" value="false"/>
+        <attribute name="propertySortPriority" value="-10"/>
+      </property>
+      <property expert="true" readable="true" category-resource="categoryInfo" column-name="version" display-name-resource="version" data-type="int" hidden="false" writable="true" name="version" required="false" cache-mode="inherit" queryable="true">
+        <attribute name="uiwritable" value="false"/>
+        <attribute name="propertySortPriority" value="-9"/>
+      </property>
+      <property expert="false" readable="true" category-resource="categoryBasics" column-name="display_name" display-name-resource="displayName" data-type="string" hidden="false" writable="true" name="displayName" required="false" cache-mode="inherit" queryable="true">
+        <attribute name="propertySortPriority" value="-11"/>
+      </property>
+
+      <property expert="false" readable="true" category-resource="categoryInfo" column-name="creation_date" display-name-resource="creationDate" data-type="timestamp" hidden="false" writable="true" name="creationDate" required="false" cache-mode="inherit" queryable="true">
+        <attribute name="uiwritable" value="false"/>
+        <attribute name="useNowForDefault" value="true"/>
+        <attribute name="propertySortPriority" value="-8"/>
+      </property>
+      <property expert="false" readable="true" category-resource="categoryInfo" column-name="last_mod_date" display-name-resource="lastModifiedDate" data-type="timestamp" hidden="false" writable="true" name="lastModifiedDate" required="false" cache-mode="inherit" queryable="true">
+        <attribute name="uiwritable" value="false"/>
+        <attribute name="propertySortPriority" value="-7"/>
+      </property>
+      <property expert="true" readable="true" category-resource="categoryInfo" display-name-resource="status" writable="true" cache-mode="inherit" column-name="migration_status" default="other" data-type="enumerated" hidden="false" name="status" required="false" queryable="true">
+        <attribute name="useCodeForValue" value="false"/>
+        <option value="other" code="0"/>
+        <option value="catalog" code="1"/>
+        <option value="category" code="2"/>
+        <option value="product" code="3"/>
+        <option value="sku" code="4"/>
+        <option value="finish" code="5"/>
+        <option value="CategoriesVerified" code="6"/>
+        <option value="SubcatalogsGenerated" code="7"/>
+        <option value="InfosGenerated" code="8"/>
+        <option value="AncestorsGenerated" code="9"/>
+        <option value="CatalogsVerified" code="10"/>
+      </property>
+      <property expert="true" readable="true" category-resource="categoryInfo" display-name-resource="index" writable="true" cache-mode="inherit" column-name="migration_index" default="0" data-type="int" hidden="true" name="index" required="false" queryable="true"/>
+      <property expert="true" readable="true" category-resource="categoryInfo" column-name="item_acl" display-name-resource="itemAcl" data-type="big string" hidden="false" writable="true" name="itemAcl" required="false" cache-mode="inherit" queryable="true"/>
+
+    </table>
+
+    <table name="dcs_root_cats" id-column-name="catalog_id" type="multi" shared-table-sequence="1">
+      <property expert="true" readable="true" component-item-type="category" category-resource="categoryCategorization" display-name-resource="rootCategories" writable="true" cache-mode="inherit" column-name="root_cat_id" data-type="set" cascade="update" hidden="false" name="rootCategories" required="false" queryable="true">
+        <attribute name="propertySortPriority" value="-11"/>
+        <attribute data-type="boolean" name="references" value="true"/>
+      </property>
+    </table>
+    <table name="dcs_root_cats" id-column-name="catalog_id" type="multi" shared-table-sequence="1">
+      <property expert="false" readable="true" category-resource="categoryCategorization" display-name-resource="rootCategoryIds" writable="false" cache-mode="inherit" column-name="root_cat_id" data-type="set" hidden="true" name="rootCategoryIds" required="false" component-data-type="string" queryable="true">
+        <attribute name="export" value="false"/>
+        <attribute name="cloneable" value="false"/>
+      </property>
+    </table>
+
+    <table name="dcs_allroot_cats" id-column-name="catalog_id" type="multi" shared-table-sequence="1">
+      <property expert="true" readable="true" component-item-type="category" category-resource="categoryCategorization" display-name-resource="allRootCategories" writable="true" cache-mode="inherit" column-name="root_cat_id" data-type="set" cascade="update" hidden="false" name="allRootCategories" required="false" queryable="true">
+        <attribute name="propertySortPriority" value="-10"/>
+        <attribute name="uiwritable" value="false"/>
+        <attribute data-type="boolean" name="references" value="true"/>
+      </property>
+    </table>
+    <table name="dcs_allroot_cats" id-column-name="catalog_id" type="multi" shared-table-sequence="1">
+
+      <property expert="false" readable="true" category-resource="categoryCategorization" display-name-resource="allRootCategoryIds" writable="false" cache-mode="inherit" column-name="root_cat_id" data-type="set" hidden="true" name="allRootCategoryIds" required="false" component-data-type="string" queryable="true">
+        <attribute name="export" value="false"/>
+        <attribute name="cloneable" value="false"/>
+      </property>
+    </table>
+
+
+... DELETED 2500 lines of enterprise-y XML
+
+
+
+
+    <!--///////////////////////////////  skuTranslation /////////////////////////////// -->
+<item-descriptor id-space-name="skuTranslation" query-cache-size="1000" display-name-resource="itemDescriptorSkuTranslation" display-property="displayName" name="skuTranslation" item-cache-size="75000" cache-mode="simple">
+    <attribute name="resourceBundle" value="com.client.resource.CatalogTemplateResources"/>
+    <table name="client_sku_xlate" id-column-name="translation_id" type="primary">
+      <property category-resource="categoryPresentation" column-name="display_name" display-name-resource="displayName" name="displayName" data-types="string"/>
+      <property category-resource="categoryPresentation" column-name="description" display-name-resource="description" name="description" data-types="string"/>
+      <property category-resource="categoryPresentation" column-name="display_color_desc" display-name="Display Color" name="displayColorDesc" data-types="string"/>
+      <property category-resource="categoryPresentation" column-name="size_code" display-name="Size" name="size" data-types="string"/>
+      <property category-resource="categoryPresentation" column-name="size_group_size" display-name="Size Group Size" name="sizeGroupSize" data-types="string"/>
+    </table>
+  </item-descriptor>  <!--
+ 
+
+</gsa-template>
+<!-- @version $Id: //product/DCS/version/10.1.2/templates/DCS/config/atg/commerce/catalog/custom/customCatalog.xml#1 $$Change: 713790 $ -->
+
